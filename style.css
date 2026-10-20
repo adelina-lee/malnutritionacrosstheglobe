@@ -1,0 +1,399 @@
+/* Theme carried over from the original Wix site */
+:root {
+    --cream: rgb(247, 245, 238);
+    --sand: rgb(241, 235, 221);
+    --olive: rgb(97, 96, 87);
+    --ink: rgb(32, 32, 32);
+    --gold: rgb(164, 135, 67);
+    --line: rgb(224, 222, 202);
+
+    --font-head: "Poppins", sans-serif;
+    --font-body: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    --gutter: clamp(1rem, 4vw, 2.5rem);
+    --section-space: clamp(2rem, 5vw, 3.5rem);
+    --header-height: 4rem;
+    --radius: 0.5rem;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-height) + 0.5rem);
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    color: inherit;
+}
+
+a:focus-visible,
+summary:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+    font-family: var(--font-head);
+    font-weight: 700;
+    line-height: 1.3;
+    text-wrap: balance;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.skip-link {
+    position: absolute;
+    top: -3rem;
+    left: 1rem;
+    z-index: 100;
+    padding: 0.5rem 1rem;
+    background: var(--ink);
+    color: var(--cream);
+    border-radius: var(--radius);
+}
+
+.skip-link:focus {
+    top: 0.5rem;
+}
+
+/* Layout */
+.container {
+    width: 100%;
+    max-width: 60rem;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+}
+
+.container--wide {
+    max-width: 84rem;
+}
+
+.section {
+    padding-block: var(--section-space);
+}
+
+.section--sand {
+    background: var(--sand);
+}
+
+/* Sticky header */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--cream);
+    border-bottom: 1px solid var(--line);
+}
+
+.site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: 84rem;
+    min-height: var(--header-height);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+}
+
+.site-title {
+    font-size: clamp(0.9375rem, 2vw, 1.25rem);
+}
+
+.site-title a {
+    text-decoration: none;
+}
+
+/* On phones the years are already in the subtitle; keep the title to one or two lines */
+@media (max-width: 30rem) {
+    .site-title .nowrap {
+        display: none;
+    }
+
+    .nav a {
+        padding-inline: 0.5rem;
+    }
+}
+
+.nav {
+    display: flex;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    padding-inline: 0.75rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: background-color 0.2s ease-out;
+}
+
+.nav a:hover {
+    background: var(--sand);
+}
+
+/* Subtitle band, over the printed-text photo */
+.subtitle {
+    padding-block: clamp(1.25rem, 3vw, 2rem);
+    background:
+            linear-gradient(rgba(247, 245, 238, 0.86), rgba(247, 245, 238, 0.86)),
+            url("images/hero-type.webp") center / cover no-repeat;
+    text-align: center;
+}
+
+.subtitle p {
+    margin-block: 0;
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: clamp(0.9375rem, 1.6vw, 1.125rem);
+    line-height: 1.6;
+    text-wrap: balance;
+}
+
+/* Tableau embed */
+.section--data {
+    padding-block: clamp(1rem, 2vw, 1.5rem) var(--section-space);
+}
+
+.viz {
+    width: 100%;
+    min-height: 20rem;
+    overflow-x: auto;
+    border-radius: var(--radius);
+}
+
+.viz iframe {
+    max-width: 100%;
+    border: 0;
+}
+
+.viz-fallback {
+    margin: 0.75rem 0 0;
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+/* About: intro + quote on the left, definition cards on the right */
+.about {
+    display: grid;
+    gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+@media (min-width: 48rem) {
+    .about {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+        align-items: start;
+    }
+}
+
+.heading {
+    color: var(--olive);
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    margin-bottom: 0.75rem;
+}
+
+.about__intro > p {
+    margin: 0;
+    font-size: clamp(1rem, 1.3vw, 1.0625rem);
+}
+
+.about__photo {
+    width: 100%;
+    margin-top: 1.5rem;
+    aspect-ratio: 2 / 1;
+    object-fit: cover;
+    border-radius: var(--radius);
+}
+
+.quote {
+    margin: 1.5rem 0 0;
+    padding-left: 1rem;
+    border-left: 3px solid var(--gold);
+}
+
+.quote blockquote {
+    margin: 0;
+}
+
+.quote p {
+    margin: 0;
+    font-family: var(--font-head);
+    font-size: clamp(1.0625rem, 1.8vw, 1.25rem);
+    line-height: 1.55;
+}
+
+.quote figcaption {
+    margin-top: 0.5rem;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 0.875rem;
+}
+
+.cards {
+    display: grid;
+    gap: 1rem;
+}
+
+@media (min-width: 36rem) {
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+.card {
+    padding: 1.25rem 1.25rem 1rem;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
+
+.card summary {
+    display: grid;
+    gap: 0.25rem;
+    cursor: pointer;
+    list-style: none;
+}
+
+.card summary::-webkit-details-marker {
+    display: none;
+}
+
+.card h3 {
+    display: flex;
+    justify-content: space-between;
+    color: var(--olive);
+    font-size: 1.25rem;
+}
+
+.card h3::after {
+    content: "+";
+    font-weight: 400;
+}
+
+.card[open] h3::after {
+    content: "−";
+}
+
+.card__hint {
+    font-size: 0.9375rem;
+    color: var(--olive);
+}
+
+.card ul {
+    margin: 0.75rem 0 0;
+    padding-left: 1.1rem;
+}
+
+.card li + li {
+    margin-top: 0.25rem;
+}
+
+/* The cards are always expanded side by side on wider screens */
+@media (min-width: 48rem) {
+    .card summary {
+        cursor: default;
+        pointer-events: none;
+    }
+
+    .card h3::after,
+    .card[open] h3::after {
+        content: none;
+    }
+}
+
+/* Footer with project information */
+.site-footer {
+    padding-block: 1.5rem;
+    background: var(--olive);
+    color: var(--cream);
+    font-size: 0.9375rem;
+}
+
+.info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2.5rem;
+    margin: 0;
+}
+
+.info dt {
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.info dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.footer-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.25rem 1.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(247, 245, 238, 0.2);
+    font-size: 0.8125rem;
+}
+
+.footer-bar p {
+    margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .nav a {
+        transition: none;
+    }
+}
